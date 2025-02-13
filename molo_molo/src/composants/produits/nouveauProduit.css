@@ -1,0 +1,50 @@
+.scroll-container {
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    display: flex;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding-bottom: 10px;
+    gap: 30px; /* 🔥 Augmente l'espace entre les cartes */
+    padding: 10px 20px; /* 🔥 Ajoute plus de padding pour éviter les bords collés */
+}
+
+/* Cache la scrollbar sur Chrome et Safari */
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Taille et espacement des cartes */
+.card-container {
+    scroll-snap-align: start;
+    width: 280px; /* 🔥 Augmente légèrement pour éviter que le texte soit coupé */
+    flex-shrink: 0;
+    padding: 5px; /* 🔥 Moins de padding pour ne pas étouffer la carte */
+    box-sizing: border-box;
+    background: white;
+    border-radius: 10px;
+}
+
+/* Style des boutons */
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.scroll-btn.left { left: 0; }
+.scroll-btn.right { right: 0; }
+
+.scroll-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}

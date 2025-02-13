@@ -1,0 +1,14 @@
+.img-container {
+    height: 300px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .img-cover {
+    width: 200%;
+    height: 100%;
+    object-fit: contain; /* Coupe l’image pour remplir la div */
+  }
+  
