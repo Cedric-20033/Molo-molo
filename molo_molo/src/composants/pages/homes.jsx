@@ -2,11 +2,14 @@ import { useLoaderData } from "react-router-dom";
 import { Baniere } from "../baniere";
 import './home.css'
 import { Nouveauproduit } from "../produits/nouveauProduit";
+import { CollectionBoutique } from "../produits/collectionBoutique";
+import { useEffect } from "react";
 
 
 export function Home(){
 
-    const response = useLoaderData() //récu^pération des articles de l'API
+    const response = useLoaderData() //récupération des articles de l'API
+    
 
     //ce tableau regroupe les 10 nouveaux produits qui seront affichés dans la selection nouveau
     let nouveauProduit = []
@@ -28,6 +31,7 @@ export function Home(){
         <Baniere promo={response.products[RandomNumber()]}/>
         <div className="container">
             <Nouveauproduit produits={nouveauProduit}/>
+            <CollectionBoutique produits={response.products}/>
         </div>
     </>
 }

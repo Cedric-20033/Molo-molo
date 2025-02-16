@@ -7,8 +7,8 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     padding-bottom: 10px;
-    gap: 30px; /* 🔥 Augmente l'espace entre les cartes */
-    padding: 10px 20px; /* 🔥 Ajoute plus de padding pour éviter les bords collés */
+    gap: 30px; /*  Augmente l'espace entre les cartes */
+    padding: 10px 20px; /*  Ajoute plus de padding pour éviter les bords collés */
 }
 
 /* Cache la scrollbar sur Chrome et Safari */
@@ -19,9 +19,9 @@
 /* Taille et espacement des cartes */
 .card-container {
     scroll-snap-align: start;
-    width: 280px; /* 🔥 Augmente légèrement pour éviter que le texte soit coupé */
+    width: 280px; /*  Augmente légèrement pour éviter que le texte soit coupé */
     flex-shrink: 0;
-    padding: 5px; /* 🔥 Moins de padding pour ne pas étouffer la carte */
+    padding: 5px; /*  Moins de padding pour ne pas étouffer la carte */
     box-sizing: border-box;
     background: white;
     border-radius: 10px;
@@ -48,3 +48,19 @@
 .scroll-btn:hover {
     background: rgba(0, 0, 0, 0.8);
 }
+
+/*personnaliser la carte des nouveaux produits */
+
+.card-new{
+    background-color: #b6b4b341;
+    border: none;
+    border-radius: 6px;
+}
+
+/* pesonalisé la carte des collections */
+
+.card-collection{
+    border: none;
+}
+
+
