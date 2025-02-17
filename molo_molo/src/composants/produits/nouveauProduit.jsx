@@ -1,4 +1,4 @@
-import { Card } from "./card"
+import { CardNew } from "./card_new"
 import { useRef } from "react"
 import "./nouveauProduit.css"
 
@@ -26,7 +26,7 @@ export function Nouveauproduit({produits}){
             <div ref={scrollRef} className="d-flex gap-4 scroll-container">
                 {produits.map((produit) => (
                     <div className="flex-shrink-0 card-container" key={produit.id}>
-                        <Card produit={produit} />
+                        <CardNew produit={produit} />
                     </div>
                 ))}
             </div>

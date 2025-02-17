@@ -6,7 +6,7 @@ export function Navigation(){
     return <>
       <header>
         <div className="">
-            <div className="bg-dark text-white text-center">30% de réduction - temps limité <NavLink  className={({ isActive }) => (isActive ? "" : "")} to="./shop" style={{textDecoration: 'none', textDecoration: 'underline', color: 'yellow'}}>boutique</NavLink></div>
+            <div className="bg-dark text-white text-center">30% de réduction - temps limité <NavLink  className={({ isActive }) => (isActive ? "" : "")} to="./shop" style={{textDecoration: 'underline', color: 'yellow'}}>boutique</NavLink></div>
         </div>
   
           <nav id="navbar" className="navbar navbar-expand-lg navbar-dark bg-danger">

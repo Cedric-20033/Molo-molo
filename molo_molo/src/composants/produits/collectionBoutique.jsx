@@ -18,9 +18,9 @@ export function CollectionBoutique({ produits }) {
 
     return <>
         <div className="d-flex justify-content-center mt-5"><h3><strong>collection de la boutique</strong></h3></div>
-        <div className="row justify-content-center ">
-            <div className="col-12 col-md-6 col-lg-3 mb-4">
-                <div className="card card-collection mb-4" style={{ width: "18rem" }} >
+        <div className="row">
+            <div className="col-6 col-md-6 col-lg-3 mb-4">
+                <div className="card card-collection mb-4" style={{ width: "auto" }} >
                     <div className="img-container">
                         <motion.img
                             src={produitCollection[0].images[0]}
@@ -48,8 +48,8 @@ export function CollectionBoutique({ produits }) {
                 </div>
             </div>
 
-            <div className="col-12 col-md-6 col-lg-3 mb-4">
-            <div className="card card-collection mb-4" style={{ width: "18rem" }} >
+            <div className="col-6 col-md-6 col-lg-3 mb-4">
+            <div className="card card-collection mb-4" style={{ width: "auto" }} >
                     <div className="img-container">
                         <motion.img
                             src={produitCollection[1].images[0]}
@@ -77,8 +77,8 @@ export function CollectionBoutique({ produits }) {
                 </div>
             </div>
 
-            <div className="col-12 col-md-6 col-lg-3 mb-4">
-            <div className="card card-collection mb-4" style={{ width: "18rem" }} >
+            <div className="col-6 col-md-6 col-lg-3 mb-4">
+            <div className="card card-collection mb-4" style={{ width: "auto" }} >
                     <div className="img-container">
                         <motion.img
                             src={produitCollection[2].images[0]}
@@ -106,8 +106,8 @@ export function CollectionBoutique({ produits }) {
                 </div>
             </div>
 
-            <div className="col-12 col-md-6 col-lg-3 mb-4">
-            <div className="card card-collection mb-4" style={{ width: "18rem" }} >
+            <div className="col-6 col-md-6 col-lg-3 mb-4">
+            <div className="card card-collection mb-4" style={{ width: "auto" }} >
                     <div className="img-container">
                         <motion.img
                             src={produitCollection[3].images[0]}

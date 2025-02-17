@@ -11,4 +11,37 @@
     height: 100%;
     object-fit: contain; /* Coupe l’image pour remplir la div */
   }
+
+
+  /* css du composant homePrecision */
+  .advantages{
+    background-color: #f8f9fa;
+    padding: 50px 0;
+}
+.advantages h5{
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+.advantages p{
+  font-size: 1em;
+  margin: 0px;
+}
+
+  .icon{
+    font-size: 3rem;
+    margin: 1rem;
+}
+
+/* css du card de meilleures ventes*/
+.card_meilleur{
+  background-color: #f8f9fa;
+}
+
+.truncated-title {
+  white-space: nowrap; /* Empêche le passage à la ligne */
+  overflow: hidden; /* Cache le texte débordant */
+  text-overflow: ellipsis; /* Ajoute les points de suspension */
+  display: block; /* Nécessaire pour fonctionner correctement */
+  width: 100%; /* Assure que le texte suit la largeur du parent */
+}
   
