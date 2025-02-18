@@ -37,7 +37,7 @@ export function CollectionBoutique({ produits }) {
                         <h5 className="card-title font-weight-bold">
                             collection: {produitCollection[0].category}
                         </h5>
-                        <p className="card-text">
+                        <p className="card-text truncated-title">
                             {produitCollection[0].title}
                         </p>
                         <div className="d-flex justify-content-center">
@@ -66,7 +66,7 @@ export function CollectionBoutique({ produits }) {
                         <h5 className="card-title font-weight-bold">
                             collection: {produitCollection[1].category}
                         </h5>
-                        <p className="card-text">
+                        <p className="card-text truncated-title">
                             {produitCollection[1].title}
                         </p>
                         <div className="d-flex justify-content-center">
@@ -95,7 +95,7 @@ export function CollectionBoutique({ produits }) {
                         <h5 className="card-title font-weight-bold">
                             collection: {produitCollection[2].category}
                         </h5>
-                        <p className="card-text">
+                        <p className="card-text truncated-title">
                             {produitCollection[2].title}
                         </p>
                         <div className="d-flex justify-content-center">
@@ -124,7 +124,7 @@ export function CollectionBoutique({ produits }) {
                         <h5 className="card-title font-weight-bold">
                             collection: {produitCollection[3].category}
                         </h5>
-                        <p className="card-text">
+                        <p className="card-text truncated-title">
                             {produitCollection[3].title}
                         </p>
                         <div className=" d-flex justify-content-center">

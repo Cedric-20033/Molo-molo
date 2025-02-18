@@ -12,7 +12,14 @@ export function Card({ clas, produit }) {
     const [loader, setloader] = useState(true)
 
     return <>
-        <div className="col-6 col-md-4 col-lg-3 mb-3">
+        <motion.div
+            className="col-6 col-md-4 col-lg-3 mb-3"
+
+            initial={{ opacity: 0, y: 50, rotate: -5}} // Départ caché en bas
+            whileInView={{ opacity: 1, y: 0, rotate: 0 }} // Animation vers visible
+            transition={{ duration: 0.6, ease: "easeOut" }} // Transition fluide
+            viewport={{ once: true, amount: 0.3 }} // S'exécute une seule fois quand 30% de l'élément est visible
+        >
             <a href={"./" + produit.id} style={{ textDecoration: 'none', color: 'black' }}>
                 <div className="card" style={{ width: "auto", height: 'auto' }} >
                     <div className={clas}>
@@ -57,7 +64,7 @@ export function Card({ clas, produit }) {
                     </div>
                 </div>
             </a>
-        </div>
+        </motion.div>
 
     </>
 }

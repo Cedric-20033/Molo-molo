@@ -6,7 +6,10 @@ export function CardNew({ produit }) {
     const [imageLoad, setImageLoad] = useState(true)
 
     return <>
-        <div className="card card-new mb-4" style={{ width: "18rem" }} >
+        <div
+            className="card card-new mb-4"
+            style={{ width: "18rem" }}
+        >
             <span className="badge bg-light position-absolute top-0 start-0 m-2 text-dark">
                 Nouveau
             </span>
@@ -34,7 +37,7 @@ export function CardNew({ produit }) {
             </div>
 
             <div className="card-body text-center">
-                <h5 className="card-title font-weight-bold">{produit.title}</h5>
+                <h5 className="card-title font-weight-bold truncated-title">{produit.title}</h5>
                 <h4 className="card-title mb-4">{convertirEuroEnFCFA(produit.price) + ' FCFA'}</h4>
                 <div className="d-flex justify-content-center">
                     <a href={'./' + produit.id} className="btn btn-outline-dark">A propos</a>
