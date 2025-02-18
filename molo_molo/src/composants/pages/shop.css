@@ -1,0 +1,12 @@
+.shop-header{
+    background-image: url('../media/images/galaxe5.png');
+    background-size: cover;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+.shop-header h1{
+    font-size: 2.5rem;
+}
+.shop-header p{
+    font-size: 1.25rem;
+}
