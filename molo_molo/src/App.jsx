@@ -4,12 +4,16 @@ import { Navigation } from "./composants/navigation";
 import { Home } from "./composants/pages/homes";
 import { ProductProvider } from "./composants/context/ProductContext";
 import { Shop } from "./composants/pages/shop";
+import { ErreurFetchProduits } from "./composants/autres/erreurFetchProduits";
 
 const route = createBrowserRouter([
   {
     path: '/',
     element: <Navigation />,
-    errorElement: 'erreur',
+    errorElement: <div>
+      <Navigation />
+      <ErreurFetchProduits error={'erreur inconnue'}/>
+    </div>,
     children: [
       {
         path: '/',
