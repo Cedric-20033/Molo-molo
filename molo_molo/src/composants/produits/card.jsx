@@ -50,7 +50,7 @@ export function Card({ clas, produit }) {
                                 hidden={loader} //masquer l'image s'il n'est pas totalement chargé
                             ></motion.img>
                         </div>
-                        <div className="card-body">
+                        <div className="card-body text-center">
                             <h5
                                 className="card-title truncated-title"
                                 /* affichage du texte sur le curseur avec bootstrap */

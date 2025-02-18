@@ -2,43 +2,37 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"
 import "./App.css"
 import { Navigation } from "./composants/navigation";
 import { Home } from "./composants/pages/homes";
-
+import { ProductProvider } from "./composants/context/ProductContext";
+import { Shop } from "./composants/pages/shop";
 
 const route = createBrowserRouter([
   {
-    path : '/',
+    path: '/',
     element: <Navigation />,
-    errorElement : 'erreur',
-    children : [
+    errorElement: 'erreur',
+    children: [
       {
-        path : '/',
-        element: <Outlet />,
-        children: [
-          {
-            path: '/',
-            element: <Home />,
-            loader: () => fetch('https://dummyjson.com/products')
-          },
-          {
-            path: ':id',
-            element: <div>detail</div>
-          }
-        ]
+        path: '/',
+        element: <Home />
+      },
+      {
+        path: ':id',
+        element: <div>detail</div>
       },
       {
         path: '/shop',
-        element: <div>'boutique'</div> 
+        element: <Shop />
       },
       {
         path: '/epargne',
-        element: <div>'epargne'</div> 
+        element: <div>'epargne'</div>
       },
       {
         path: '/contact',
-        element : <div>'contact'</div> 
+        element: <div>'contact'</div>
       },
       {
-        path : '*',
+        path: '*',
         element: 'page non trouvé'
       }
     ]
@@ -48,7 +42,11 @@ const route = createBrowserRouter([
 
 function App() {
 
-  return <RouterProvider router={route} />
+  return (
+    <ProductProvider> {/* fournir les données de produit a tous les composants */}
+      <RouterProvider router={route} />
+    </ProductProvider>
+  )
 
 }
 
