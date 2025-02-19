@@ -4,10 +4,14 @@ import { BaniereShop } from "../baniereShop"
 import { useProducts } from "../context/ProductContext"
 import { Footer } from "./footer"
 import "./shop.css"
+import { Modal } from "../autres/modal"
 
 export function Shop() {
 
     const { products, loading, error } = useProducts() //récupération des articles de l'API
+
+    //cette variable permet de savoir si on affiche la modal ou pas
+    const [showModal, setShowModal] = useState(true)
 
     if (loading) return <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
         <div className="text-center">
@@ -25,7 +29,7 @@ export function Shop() {
         <div className="container-fluid mt-3 d-flex">
 
             {/* Filtre */}
-            <aside className="col-lg-3 overlay d-none d-lg-block" id="overlay">
+            <aside className={" col-md-3 overlay d-none d-md-block "} id="overlay">
                 <div className="overlay-content" id="overlay-content">
                     <div className="d-flex"><h5 className="mt-4">Filtres</h5></div>
                     <div className="filter-category">
@@ -53,14 +57,17 @@ export function Shop() {
 
                     <button type="button" className="btn btn-danger d-none" id="close-overlay">Fermer</button>
                 </div>
+                
             </aside>
 
-            <button className="arrow-button d-block d-lg-none" id="arrow-button" style={{border: "none"}}>Filtres &#x25B2;</button>
+            {/* Le bouton flottant en bas à droite */}
+
+            <button type="button" className="arrow-button d-block d-md-none" data-bs-toggle="modal" data-bs-target="#ModalFiltre" style={{ border: "none" }}>
+                Filtres &#x25B2;
+            </button>
+
 
             {/* Contenu principal */}
-            {
-                //<!-- produits-->
-            }
             <main className="col-12 col-lg-9">
                 <div className="d-flex justify-content-between align-items-center mt-4 mb-2">
                     <h5>Articles</h5>
@@ -80,14 +87,16 @@ export function Shop() {
                     }
 
                 </div>
-                <div className="spinner-border d-block" id="spinner-border" style={{width: "3rem", height: "3rem"}} role="status">
-                    <span className="sr-only">Loading...</span>
-                </div>
+
                 <div className="text-center mt-4 mb-4">
                     <button id="show-more" className="btn btn-dark">suivant</button>
                 </div>
             </main>
+
         </div>
         <Footer />
+
+        <Modal content={document.querySelector('#overlay').innerHTML} />
+        
     </>
 }

@@ -37,7 +37,7 @@ const route = createBrowserRouter([
       },
       {
         path: '*',
-        element: 'page non trouvé'
+        element: <ErreurFetchProduits error={"page non trouvé! la page que vous essayez de contacter n'existe plus, elle a peut-être été déplacée ou suprimée"} />
       }
     ]
   }
