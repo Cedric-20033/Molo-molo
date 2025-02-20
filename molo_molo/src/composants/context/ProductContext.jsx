@@ -5,7 +5,7 @@ const ProductContext = createContext();
 
 // Fournisseur de contexte
 export function ProductProvider({ children }) {
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState([]); //si on met null comme valeur par défaut, il y aura les problèmes lors du rendu quand les produits ne seront pas encore chargés
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
