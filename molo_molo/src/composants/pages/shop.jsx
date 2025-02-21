@@ -6,23 +6,31 @@ import { Footer } from "./footer";
 import "./shop.css";
 import { Modal } from "../autres/modal";
 import { GetCategorie } from "../autres/getCategorie";
+import { Radio } from "../formulaires/radio";
 
 export function Shop() {
+
+    //récupération des données de produits depuis le productContext a parti du useProducts
     const { products, loading, error } = useProducts();
 
+    //définit si la modal des filtres est ouverte ou pas
     const [showModal, setShowModal] = useState(false);
+    //définit une référence pour les modals
     const refModal = useRef(null);
+    //définit une reference pour la section filtre
     const refFiltre = useRef(null);
 
-    // Initialisation correcte de selectedCategories
+    // Initialisation de selectedCategories pour stocker les categories filtrées
     const [selectedCategories, setSelectedCategories] = useState({});
+    // Initialisation de selectedPrice pour stocker les prix filtrés
+    const [selectedPrice, setSelectedPrice] = useState({min: 0, max: 0});
 
-    // Mettre à jour selectedCategories quand les produits sont chargés
+    // Mettre à jour selectedCategories quand les produits sont chargés et a chaque fois que products change
     useEffect(() => {
         if (products.length > 0) {
             const initialCategories = {};
             products.forEach(product => {
-                initialCategories[product.category] = true;
+                initialCategories[product.category] = false;
             });
             setSelectedCategories(initialCategories);
         }
@@ -39,6 +47,7 @@ export function Shop() {
 
     if (error) return <ErreurFetchProduits error={error} />
 
+    //on récupère les catégories pour les afficher sur la section des filtres
     const categories = Array.from(new Set(products.map(product => product.category)));
 
     return (
@@ -63,6 +72,8 @@ export function Shop() {
                             </ul>
                         </div>
                     </div>
+                    <Radio value={{min:0, max:0}} name="prix" label="5-9" selectedPrice ={selectedPrice} setSelectedPrice ={setSelectedPrice}/>
+                    <Radio value={{min:5, max:9}} name="prix" label="9-15"/>
                 </aside>
 
                 {/* Bouton flottant pour ouvrir la modal */}
@@ -82,7 +93,19 @@ export function Shop() {
 
                 {/* Contenu principal */}
                 <main className="col-12 col-md-9">
-                    <h5>Articles</h5>
+
+                    <div className="d-flex justify-content-between align-items-center mt-4 mb-2">
+                        <h5>Articles</h5>
+                        <div>
+                            <span className="mr-2">Trier</span>
+                            <select id="sort" className="form-control d-inline-block w-auto">
+                                <option value="default">par défaut</option>
+                                <option value="price_asc">prix croissant</option>
+                                <option value="price_desc">prix décroissant</option>
+                            </select>
+                        </div>
+
+                    </div>
                     <div id="product-grid" className="row">
                         {/* Les produits seront affichés ici */}
                     </div>

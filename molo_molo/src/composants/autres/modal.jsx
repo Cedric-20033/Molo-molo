@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { GetCategorie } from "../autres/getCategorie";
 
+//le forwardRef permet de récupéré une Ref passé en props
 export const Modal = forwardRef(({ setShowModal, selectedCategories, setSelectedCategories }, ref) => {
     const categories = Object.keys(selectedCategories);
 

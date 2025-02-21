@@ -11,9 +11,6 @@ export function GetCategorie({ cat, selectedCategories, setSelectedCategories })
         }))
     }
 
-    console.log(cat)
-    console.log(selectedCategories[cat])
-
     return <>
         <li>
             <Checkbox
