@@ -6,6 +6,7 @@ import { Footer } from "./footer";
 import "./shop.css";
 import { Modal } from "../autres/modal";
 import { GetCategorie } from "../autres/getCategorie";
+import { GetFiltrePrix } from "../autres/GetFiltrePrix";
 import { Radio } from "../formulaires/radio";
 
 export function Shop() {
@@ -70,10 +71,9 @@ export function Shop() {
                                     />
                                 ))}
                             </ul>
+
                         </div>
                     </div>
-                    <Radio value={{min:0, max:0}} name="prix" label="5-9" selectedPrice ={selectedPrice} setSelectedPrice ={setSelectedPrice}/>
-                    <Radio value={{min:5, max:9}} name="prix" label="9-15"/>
                 </aside>
 
                 {/* Bouton flottant pour ouvrir la modal */}
