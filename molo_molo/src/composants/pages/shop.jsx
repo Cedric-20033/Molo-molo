@@ -6,13 +6,18 @@ import { Footer } from "./footer";
 import "./shop.css";
 import { Modal } from "../autres/modal";
 import { GetCategorie } from "../autres/getCategorie";
-import { GetFiltrePrix } from "../autres/GetFiltrePrix";
 import { Radio } from "../formulaires/radio";
+import { filtreProduits } from "../../fonction/filtreProduits";
+import { ShowProducts } from "../produits/showProductsShop";
+import { melangerUnTableau } from "../../fonction/melangerUnTableau";
 
 export function Shop() {
 
     //récupération des données de produits depuis le productContext a parti du useProducts
     const { products, loading, error } = useProducts();
+
+    //cette variable contendra la liste des produits a afficher
+    const [productsShow, setProductShow] = useState([])
 
     //définit si la modal des filtres est ouverte ou pas
     const [showModal, setShowModal] = useState(false);
@@ -22,9 +27,7 @@ export function Shop() {
     const refFiltre = useRef(null);
 
     // Initialisation de selectedCategories pour stocker les categories filtrées
-    const [selectedCategories, setSelectedCategories] = useState({});
-    // Initialisation de selectedPrice pour stocker les prix filtrés
-    const [selectedPrice, setSelectedPrice] = useState({min: 0, max: 0});
+    const [selectedCategories, setSelectedCategories] = useState({categorie: {}, prix:{min: 0, max: 0}});
 
     // Mettre à jour selectedCategories quand les produits sont chargés et a chaque fois que products change
     useEffect(() => {
@@ -33,9 +36,19 @@ export function Shop() {
             products.forEach(product => {
                 initialCategories[product.category] = false;
             });
-            setSelectedCategories(initialCategories);
+            setSelectedCategories((v) => ({
+                ...v,
+                categorie: initialCategories
+            }));
         }
     }, [products]);
+
+    //mettre a jour la liste des produits a afficher
+    useEffect(() => {
+
+        setProductShow(melangerUnTableau(filtreProduits(products, selectedCategories)))
+
+    }, [products, selectedCategories])
 
     if (loading) return <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
         <div className="text-center">
@@ -107,7 +120,11 @@ export function Shop() {
 
                     </div>
                     <div id="product-grid" className="row">
-                        {/* Les produits seront affichés ici */}
+                        {
+                        /* Les produits seront affichés ici */
+
+                        <ShowProducts products={productsShow} />
+                        }
                     </div>
                 </main>
             </div>
@@ -119,3 +136,4 @@ export function Shop() {
         </>
     );
 }
+

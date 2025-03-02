@@ -3,7 +3,7 @@ import { GetCategorie } from "./getCategorie";
 
 //le forwardRef permet de récupéré une Ref passé en props
 export const Modal = forwardRef(({ setShowModal, selectedCategories, setSelectedCategories }, ref) => {
-    const categories = Object.keys(selectedCategories);
+    const categories = Object.keys(selectedCategories.categorie);
 
     return (
         <div ref={ref} className="modal fade" id="ModalFiltre" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="ModalFiltreLabel" aria-hidden="true">

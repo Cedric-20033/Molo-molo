@@ -3,17 +3,17 @@ import { useState } from "react"
 import { convertirEuroEnFCFA } from "../../fonction/convertisseur_prix"
 
 /**
- * ce composant retourne les cartes pour les produits de la section meilleur produit
+ * ce composant retourne les cartes pour les produits de la page boutique
  * @param {classe_spéciale_et_produit} clas 
  * @returns 
  */
-export function Card({ clas, produit }) {
+export function ProductShop({ clas, produit }) {
 
     const [loader, setloader] = useState(true)
 
     return <>
         <motion.div
-            className="col-6 col-md-4 col-lg-3 mb-3"
+            className="col-6 col-sm-4 col-lg-3 mb-3"
 
             initial={{ opacity: 0, y: 50, rotate: -5}} // Départ caché en bas
             whileInView={{ opacity: 1, y: 0, rotate: 0 }} // Animation vers visible
@@ -23,11 +23,6 @@ export function Card({ clas, produit }) {
             <a href={"./" + produit.id} style={{ textDecoration: 'none', color: 'black' }}>
                 <div className="card" style={{ width: "auto", height: 'auto' }} >
                     <div className={clas}>
-                        <div className="d-flex justify-content-center">
-                            <span className="badge bg-danger position-absolute top-0 start-0 m-2 text-light">
-                                Best
-                            </span>
-                        </div>
 
                         <div className="img-container">
                             {loader && (
@@ -51,6 +46,8 @@ export function Card({ clas, produit }) {
                             ></motion.img>
                         </div>
                         <div className="card-body text-center">
+                            <button className="btn btn-dark">ajouter au panier</button>
+                            <button className="btn btn-outine-dark"></button>
                             <h5
                                 className="card-title truncated-title"
                                 /* affichage du texte sur le curseur avec bootstrap */

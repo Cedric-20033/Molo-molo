@@ -48,3 +48,8 @@
     max-height: 80%;
     overflow: auto;
 }
+
+/* css du card de shop*/
+.card_shop{
+    background-color: #f8f9fa;
+  }
