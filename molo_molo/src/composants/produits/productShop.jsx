@@ -15,15 +15,16 @@ export function ProductShop({ clas, produit }) {
         <motion.div
             className="col-6 col-sm-4 col-lg-3 mb-3"
 
-            initial={{ opacity: 0, y: 50, rotate: -5}} // Départ caché en bas
+            initial={{ opacity: 0, y: 50, rotate: -5 }} // Départ caché en bas
             whileInView={{ opacity: 1, y: 0, rotate: 0 }} // Animation vers visible
             transition={{ duration: 0.6, ease: "easeOut" }} // Transition fluide
             viewport={{ once: true, amount: 0.3 }} // S'exécute une seule fois quand 30% de l'élément est visible
         >
-            <a href={"./" + produit.id} style={{ textDecoration: 'none', color: 'black' }}>
-                <div className="card" style={{ width: "auto", height: 'auto' }} >
-                    <div className={clas}>
 
+            <div className="card" style={{ width: "auto", height: 'auto' }} >
+                <div className={clas}>
+
+                    <a href={"./" + produit.id} style={{ textDecoration: 'none', color: 'black' }}>
                         <div className="img-container">
                             {loader && (
                                 <div className="text-center">
@@ -45,22 +46,42 @@ export function ProductShop({ clas, produit }) {
                                 hidden={loader} //masquer l'image s'il n'est pas totalement chargé
                             ></motion.img>
                         </div>
-                        <div className="card-body text-center">
-                            <button className="btn btn-dark">ajouter au panier</button>
-                            <button className="btn btn-outine-dark"></button>
-                            <h5
-                                className="card-title truncated-title"
+                    </a>
+                    <div className="card-body text-center">
+
+                        <h5
+                            className="card-title truncated-title"
+                            /* affichage du texte sur le curseur avec bootstrap */
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title={produit.title}
+
+                        >{produit.title}</h5>
+                        <p className="card-text">{convertirEuroEnFCFA(produit.price) + ' FCFA'}</p>
+
+                        <div className="row">
+                            <button
+                                className="btn btn-danger mb-1"
+
                                 /* affichage du texte sur le curseur avec bootstrap */
                                 data-bs-toggle="tooltip"
                                 data-bs-placement="top"
-                                title={produit.title}
-
-                            >{produit.title}</h5>
-                            <p className="card-text">{convertirEuroEnFCFA(produit.price) + ' FCFA'}</p>
+                                title='ajputer au panier'>
+                                <i className="fa-solid fa-cart-plus"></i>
+                            </button>
+                            <button
+                                className="btn btn-outline-danger"
+                                
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="top"
+                                title='initialiser un payement par tranche'>
+                                <i className="fa-solid fa-credit-card"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
-            </a>
+            </div>
+
         </motion.div>
 
     </>

@@ -6,7 +6,7 @@ export function ShowProducts({products}){
 
         <div className="row justify-content-center">
             {products.map((product) => (<ProductShop clas="card_shop" produit={product} key={product.title}/>))}
-            
+        
         </div>
     </>
 }

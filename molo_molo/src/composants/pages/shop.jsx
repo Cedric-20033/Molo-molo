@@ -10,6 +10,7 @@ import { Radio } from "../formulaires/radio";
 import { filtreProduits } from "../../fonction/filtreProduits";
 import { ShowProducts } from "../produits/showProductsShop";
 import { melangerUnTableau } from "../../fonction/melangerUnTableau";
+import { PaginationShop } from "../autres/paginationShop";
 
 export function Shop() {
 
@@ -27,7 +28,12 @@ export function Shop() {
     const refFiltre = useRef(null);
 
     // Initialisation de selectedCategories pour stocker les categories filtrées
-    const [selectedCategories, setSelectedCategories] = useState({categorie: {}, prix:{min: 0, max: 0}});
+    const [selectedCategories, setSelectedCategories] = useState({ categorie: {}, prix: { min: 0, max: 0 } });
+
+    // État pour la pagination
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 8; // Nombre de produits affichés par page
+
 
     // Mettre à jour selectedCategories quand les produits sont chargés et a chaque fois que products change
     useEffect(() => {
@@ -63,6 +69,12 @@ export function Shop() {
 
     //on récupère les catégories pour les afficher sur la section des filtres
     const categories = Array.from(new Set(products.map(product => product.category)));
+
+    // Calculer l'index des produits à afficher
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = productsShow.slice(indexOfFirstProduct, indexOfLastProduct);
+
 
     return (
         <>
@@ -121,10 +133,14 @@ export function Shop() {
                     </div>
                     <div id="product-grid" className="row">
                         {
-                        /* Les produits seront affichés ici */
+                            /* Les produits seront affichés ici */
 
-                        <ShowProducts products={productsShow} />
+                            <>
+                                <ShowProducts products={currentProducts} />
+                                <PaginationShop currentPage={currentPage} setCurrentPage={setCurrentPage} productsShow={productsShow} productsPerPage={productsPerPage}/>
+                            </>
                         }
+
                     </div>
                 </main>
             </div>
