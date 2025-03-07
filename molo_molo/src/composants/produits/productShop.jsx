@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { convertirEuroEnFCFA } from "../../fonction/convertisseur_prix"
+import Etoiles from "../autres/etoiles"
 
 /**
  * ce composant retourne les cartes pour les produits de la page boutique
@@ -49,6 +50,7 @@ export function ProductShop({ clas, produit }) {
                     </a>
                     <div className="card-body text-center">
 
+                        <Etoiles reviews={produit.reviews} />
                         <h5
                             className="card-title truncated-title"
                             /* affichage du texte sur le curseur avec bootstrap */
@@ -71,7 +73,7 @@ export function ProductShop({ clas, produit }) {
                             </button>
                             <button
                                 className="btn btn-outline-danger"
-                                
+
                                 data-bs-toggle="tooltip"
                                 data-bs-placement="top"
                                 title='initialiser un payement par tranche'>

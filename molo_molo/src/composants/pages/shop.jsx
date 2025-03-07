@@ -11,6 +11,7 @@ import { filtreProduits } from "../../fonction/filtreProduits";
 import { ShowProducts } from "../produits/showProductsShop";
 import { melangerUnTableau } from "../../fonction/melangerUnTableau";
 import { PaginationShop } from "../autres/paginationShop";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 export function Shop() {
 
@@ -28,7 +29,20 @@ export function Shop() {
     const refFiltre = useRef(null);
 
     // Initialisation de selectedCategories pour stocker les categories filtrées
-    const [selectedCategories, setSelectedCategories] = useState({ categorie: {}, prix: { min: 0, max: 0 } });
+    const initialSelectedCategorie = { categorie: {}, prix: { min: 0, max: 0 } }
+    const [selectedCategories, setSelectedCategories] = useState(() => {
+        try{
+            const item = JSON.parse(localStorage.getItem("selectedCategorie")) //récupération des categories filtrées dans le localStorage et le convertir en format JSON
+            if(item){
+                return item
+            }else{
+                return initialSelectedCategorie
+            }
+        } catch(e){
+            return initialSelectedCategorie //si les choses se passent mal, retourner les valeurs par défaut
+        }
+        
+    });
 
     // État pour la pagination
     const [currentPage, setCurrentPage] = useState(1);
@@ -37,11 +51,17 @@ export function Shop() {
 
     // Mettre à jour selectedCategories quand les produits sont chargés et a chaque fois que products change
     useEffect(() => {
+    
         if (products.length > 0) {
-            const initialCategories = {};
-            products.forEach(product => {
+            const item = JSON.parse(localStorage.getItem("selectedCategorie"))
+            const initialCategories = item? item.categorie : {};
+            
+            if(JSON.stringify(item.categorie) === '{}'){ //vérifie si les informations prises sur le localStorage qui contient les categories sont vides, si oui on crée un nouveau
+                products.forEach(product => {
                 initialCategories[product.category] = false;
             });
+            }
+            
             setSelectedCategories((v) => ({
                 ...v,
                 categorie: initialCategories
@@ -52,7 +72,13 @@ export function Shop() {
     //mettre a jour la liste des produits a afficher
     useEffect(() => {
 
+        try {
+            localStorage.setItem("selectedCategorie", JSON.stringify(selectedCategories)) //transformer les informations de filtre en string et l'insérer dans le stockage local 
+        } catch(e){
+            <ErreurFetchProduits error="une erreur s'est produite avec votre stockage local" />
+        }
         setProductShow(melangerUnTableau(filtreProduits(products, selectedCategories)))
+        
 
     }, [products, selectedCategories])
 
