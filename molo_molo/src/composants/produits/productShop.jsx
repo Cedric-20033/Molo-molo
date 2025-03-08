@@ -8,7 +8,7 @@ import Etoiles from "../autres/etoiles"
  * @param {classe_spéciale_et_produit} clas 
  * @returns 
  */
-export function ProductShop({ clas, produit }) {
+export function ProductShop({ clas, produit, addToCart }) {
 
     const [loader, setloader] = useState(true)
 
@@ -64,6 +64,7 @@ export function ProductShop({ clas, produit }) {
                         <div className="row">
                             <button
                                 className="btn btn-danger mb-1"
+                                onClick={() => addToCart(produit)}
 
                                 /* affichage du texte sur le curseur avec bootstrap */
                                 data-bs-toggle="tooltip"

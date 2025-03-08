@@ -12,6 +12,7 @@ import { ShowProducts } from "../produits/showProductsShop";
 import { melangerUnTableau } from "../../fonction/melangerUnTableau";
 import { PaginationShop } from "../autres/paginationShop";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { Cart } from "../cart/setCart";
 
 export function Shop() {
 
@@ -47,6 +48,12 @@ export function Shop() {
     // État pour la pagination
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 8; // Nombre de produits affichés par page
+
+    //gestion du panier
+    const [cart, addToCart, updateQuantity, removeFromCart, sizeCart] = Cart([])
+    const t = sizeCart
+    console.log(t)
+      
 
 
     // Mettre à jour selectedCategories quand les produits sont chargés et a chaque fois que products change
@@ -162,7 +169,7 @@ export function Shop() {
                             /* Les produits seront affichés ici */
 
                             <>
-                                <ShowProducts products={currentProducts} />
+                                <ShowProducts products={currentProducts} addToCart={addToCart}/>
                                 <PaginationShop currentPage={currentPage} setCurrentPage={setCurrentPage} productsShow={productsShow} productsPerPage={productsPerPage}/>
                             </>
                         }
