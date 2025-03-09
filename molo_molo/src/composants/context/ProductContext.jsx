@@ -17,7 +17,6 @@ export function ProductProvider({ children }) {
         setProducts(data.products); // Stocke les produits
       } catch (err) {
         setError("Erreur lors du chargement des articles");
-        console.log(err)
       } finally {
         setLoading(false);
       }

@@ -6,17 +6,15 @@ import { Footer } from "./footer";
 import "./shop.css";
 import { Modal } from "../autres/modal";
 import { GetCategorie } from "../autres/getCategorie";
-import { Radio } from "../formulaires/radio";
 import { filtreProduits } from "../../fonction/filtreProduits";
 import { ShowProducts } from "../produits/showProductsShop";
 import { melangerUnTableau } from "../../fonction/melangerUnTableau";
 import { PaginationShop } from "../autres/paginationShop";
-import { useLocalStorage } from "@uidotdev/usehooks";
-import { Cart } from "../cart/setCart";
+import { useCart } from "../context/cartContext";
 
 export function Shop() {
 
-    //récupération des données de produits depuis le productContext a parti du useProducts
+    //récupération des données de produits depuis le productContext a partir du useProducts
     const { products, loading, error } = useProducts();
 
     //cette variable contendra la liste des produits a afficher
@@ -50,9 +48,7 @@ export function Shop() {
     const productsPerPage = 8; // Nombre de produits affichés par page
 
     //gestion du panier
-    const [cart, addToCart, updateQuantity, removeFromCart, sizeCart] = Cart([])
-    const t = sizeCart
-    console.log(t)
+    const { cart, addToCart, removeFromCart, updateQuantity, getCartCount } = useCart()
       
 
 
@@ -153,7 +149,7 @@ export function Shop() {
                 <main className="col-12 col-md-9">
 
                     <div className="d-flex justify-content-between align-items-center mt-4 mb-2">
-                        <h5>Articles</h5>
+                        <h5>Articles {getCartCount()}</h5>
                         <div>
                             <span className="mr-2">Trier</span>
                             <select id="sort" className="form-control d-inline-block w-auto">

@@ -5,6 +5,7 @@ import { Home } from "./composants/pages/homes";
 import { ProductProvider } from "./composants/context/ProductContext";
 import { Shop } from "./composants/pages/shop";
 import { ErreurFetchProduits } from "./composants/autres/erreurFetchProduits";
+import { CartProvider } from "./composants/context/cartContext";
 
 const route = createBrowserRouter([
   {
@@ -12,7 +13,7 @@ const route = createBrowserRouter([
     element: <Navigation />,
     errorElement: <div>
       <Navigation />
-      <ErreurFetchProduits error={'erreur inconnue'}/>
+      <ErreurFetchProduits error={'erreur inconnue'} />
     </div>,
     children: [
       {
@@ -36,6 +37,10 @@ const route = createBrowserRouter([
         element: <div>'contact'</div>
       },
       {
+        path: '/cart',
+        element: <div>'panier'</div>
+      }, ,
+      {
         path: '*',
         element: <ErreurFetchProduits error={"page non trouvé! la page que vous essayez de contacter n'existe plus, elle a peut-être été déplacée ou suprimée"} />
       }
@@ -48,7 +53,13 @@ function App() {
 
   return (
     <ProductProvider> {/* fournir les données de produit a tous les composants */}
-      <RouterProvider router={route} />
+
+      <CartProvider>{/* fournir les données de panier a tous les composants */}
+
+        <RouterProvider router={route} />
+
+      </CartProvider>
+
     </ProductProvider>
   )
 
