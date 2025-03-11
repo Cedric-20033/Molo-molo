@@ -21,6 +21,14 @@
     color: white;
 }
 
+/* notification flottante en bas à gauche */
+.arrow-notification{
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1060;
+}
+
 /* Personnalisation de la superposition */
 .c-overlay{
     background-color: rgba(0, 0, 0, 0.8);

@@ -11,8 +11,17 @@ import { ShowProducts } from "../produits/showProductsShop";
 import { melangerUnTableau } from "../../fonction/melangerUnTableau";
 import { PaginationShop } from "../autres/paginationShop";
 import { useCart } from "../context/cartContext";
+import { motion } from "framer-motion"
+
+//bootstrap components
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import ToastContainer from 'react-bootstrap/ToastContainer';
+import { Notification } from "../autres/notification";
 
 export function Shop() {
+    //notification toast
+    const [showNotification, setShowNotification] = useState(false);
 
     //récupération des données de produits depuis le productContext a partir du useProducts
     const { products, loading, error } = useProducts();
@@ -30,17 +39,17 @@ export function Shop() {
     // Initialisation de selectedCategories pour stocker les categories filtrées
     const initialSelectedCategorie = { categorie: {}, prix: { min: 0, max: 0 } }
     const [selectedCategories, setSelectedCategories] = useState(() => {
-        try{
+        try {
             const item = JSON.parse(localStorage.getItem("selectedCategorie")) //récupération des categories filtrées dans le localStorage et le convertir en format JSON
-            if(item){
+            if (item) {
                 return item
-            }else{
+            } else {
                 return initialSelectedCategorie
             }
-        } catch(e){
+        } catch (e) {
             return initialSelectedCategorie //si les choses se passent mal, retourner les valeurs par défaut
         }
-        
+
     });
 
     // État pour la pagination
@@ -49,22 +58,22 @@ export function Shop() {
 
     //gestion du panier
     const { cart, addToCart, removeFromCart, updateQuantity, getCartCount } = useCart()
-      
+
 
 
     // Mettre à jour selectedCategories quand les produits sont chargés et a chaque fois que products change
     useEffect(() => {
-    
+
         if (products.length > 0) {
             const item = JSON.parse(localStorage.getItem("selectedCategorie"))
-            const initialCategories = item? item.categorie : {};
-            
-            if(JSON.stringify(item.categorie) === '{}'){ //vérifie si les informations prises sur le localStorage qui contient les categories sont vides, si oui on crée un nouveau
+            const initialCategories = item ? item.categorie : {};
+
+            if (JSON.stringify(item.categorie) === '{}') { //vérifie si les informations prises sur le localStorage qui contient les categories sont vides, si oui on crée un nouveau
                 products.forEach(product => {
-                initialCategories[product.category] = false;
-            });
+                    initialCategories[product.category] = false;
+                });
             }
-            
+
             setSelectedCategories((v) => ({
                 ...v,
                 categorie: initialCategories
@@ -77,11 +86,11 @@ export function Shop() {
 
         try {
             localStorage.setItem("selectedCategorie", JSON.stringify(selectedCategories)) //transformer les informations de filtre en string et l'insérer dans le stockage local 
-        } catch(e){
+        } catch (e) {
             <ErreurFetchProduits error="une erreur s'est produite avec votre stockage local" />
         }
         setProductShow(melangerUnTableau(filtreProduits(products, selectedCategories)))
-        
+
 
     }, [products, selectedCategories])
 
@@ -149,7 +158,7 @@ export function Shop() {
                 <main className="col-12 col-md-9">
 
                     <div className="d-flex justify-content-between align-items-center mt-4 mb-2">
-                        <h5>Articles {getCartCount()}</h5>
+                        <h5>Articles</h5>
                         <div>
                             <span className="mr-2">Trier</span>
                             <select id="sort" className="form-control d-inline-block w-auto">
@@ -165,12 +174,28 @@ export function Shop() {
                             /* Les produits seront affichés ici */
 
                             <>
-                                <ShowProducts products={currentProducts} addToCart={addToCart}/>
-                                <PaginationShop currentPage={currentPage} setCurrentPage={setCurrentPage} productsShow={productsShow} productsPerPage={productsPerPage}/>
+                                <ShowProducts products={currentProducts} addToCart={addToCart} setShowNotification={setShowNotification} />
+                                <PaginationShop currentPage={currentPage} setCurrentPage={setCurrentPage} productsShow={productsShow} productsPerPage={productsPerPage} />
                             </>
                         }
 
                     </div>
+                    {showNotification && (<motion.div
+                        className="arrow-notification d-block"
+                        initial={{ opacity: 0, x: -20 }} // État initial (invisible, légèrement en haut)
+                        animate={{ opacity: 1, x: 0 }} // État final (visible, position normale)
+                        exit={{ opacity: 0, x: 30 }} // Animation de sortie (disparaît vers le bas)
+                        transition={{ duration: 0.3, ease: "easeInOut" }} // Durée et effet
+                    >
+                        {/* affichage de la notification quand un produit est ajouté au panier */}
+                        <Row>
+                            <Col xs={12}>
+                                <ToastContainer position="top-end" className="p-3" style={{ zIndex: 1 }}>
+                                    <Notification text="ajout effectué avec succès!" delai="3000" showNotification={showNotification} setShowNotification={setShowNotification} />
+                                </ToastContainer>
+                            </Col>
+                        </Row>
+                    </motion.div>)}
                 </main>
             </div>
 

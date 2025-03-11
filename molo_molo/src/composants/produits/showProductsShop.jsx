@@ -1,9 +1,9 @@
 import { ProductShop } from "./productShop"
 
-export function ShowProducts({products, addToCart}){
+export function ShowProducts({products, addToCart, setShowNotification}){
 
     /**
-     * cette fonction ajpute dans la panier un produit avec uniquement les informartions dont on aura besoin
+     * cette fonction ajoute dans la panier un produit avec uniquement les informartions dont on aura besoin
      * @param {produit} ite 
      */
     const addcart = (ite) => {
@@ -22,7 +22,7 @@ export function ShowProducts({products, addToCart}){
     return <>
 
         <div className="row justify-content-center">
-            {products.map((product) => (<ProductShop clas="card_shop" addToCart={addcart} produit={product} key={product.title}/>))}
+            {products.map((product) => (<ProductShop clas="card_shop" addToCart={addcart} setShowNotification={setShowNotification} produit={product} key={product.title}/>))}
         
         </div>
     </>
