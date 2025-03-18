@@ -2,6 +2,7 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom"
 import "./App.css"
 import { Navigation } from "./composants/navigation";
 import { Home } from "./composants/pages/homes";
+import { Cart } from "./composants/pages/Cart";
 import { ProductProvider } from "./composants/context/ProductContext";
 import { Shop } from "./composants/pages/shop";
 import { ErreurFetchProduits } from "./composants/autres/erreurFetchProduits";
@@ -38,8 +39,8 @@ const route = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: <div>'panier'</div>
-      }, ,
+        element: <Cart />
+      },
       {
         path: '*',
         element: <ErreurFetchProduits error={"page non trouvé! la page que vous essayez de contacter n'existe plus, elle a peut-être été déplacée ou suprimée"} />

@@ -61,3 +61,16 @@
 .card_shop{
     background-color: #f8f9fa;
   }
+
+
+.img-container-cart {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.img-container-cart img {
+    height: 90%;
+}

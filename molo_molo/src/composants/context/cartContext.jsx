@@ -8,15 +8,13 @@ export function CartProvider({ children }) {
     const [cart, setCart] = useState(() => {
         try {
           const item = JSON.parse(localStorage.getItem("cart"))
-          if (item) {
-            return item
-          } else {
-            return initialCart
-          }
+
+          return item || initialCart
+
         } catch (e) {
           return initialCart //si les choses se passent mal, retourner les valeurs par défaut
         }
-    
+      
       }); // Stocke les produits du panier
 
     const addToCart = (newItem) => {

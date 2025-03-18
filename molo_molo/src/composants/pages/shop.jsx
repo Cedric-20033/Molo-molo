@@ -126,7 +126,7 @@ export function Shop() {
                             <h6>CATEGORIES</h6>
                             <ul className="list-unstyled">
                                 {categories.map((cat) => (
-                                    <GetCategorie
+                                    <GetCategorie 
                                         key={cat}
                                         cat={cat}
                                         selectedCategories={selectedCategories}
@@ -184,7 +184,7 @@ export function Shop() {
                         className="arrow-notification d-block"
                         initial={{ opacity: 0, x: -20 }} // État initial (invisible, légèrement en haut)
                         animate={{ opacity: 1, x: 0 }} // État final (visible, position normale)
-                        exit={{ opacity: 0, x: 30 }} // Animation de sortie (disparaît vers le bas)
+                        exit={{ opacity: 1, x: -20 }} // Animation de sortie (disparaît vers le bas)
                         transition={{ duration: 0.3, ease: "easeInOut" }} // Durée et effet
                     >
                         {/* affichage de la notification quand un produit est ajouté au panier */}
