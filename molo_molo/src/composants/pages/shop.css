@@ -64,13 +64,10 @@
 
 
 .img-container-cart {
-    height: 100px;
-    width: 100%;
+    max-width: 60px; /* Taille réduite sur mobile */
+    height: auto;
+    border-radius: 5px; /* Coins arrondis */
     display: flex;
     justify-content: center;
     align-items: center;
   }
-
-.img-container-cart img {
-    height: 90%;
-}

@@ -1,11 +1,13 @@
 export function convertirEuroEnFCFA(prixEnEuro) {
-
-    const tauxDeConversion = 655.957; // 1€ = 655.957 FCFA (ajuster selon le taux réel)
+    const tauxDeConversion = 655.957; // 1€ = 655.957 FCFA 
 
     const prixEnFCFA = prixEnEuro * tauxDeConversion;
 
-    // Formater le prix en ajoutant un séparateur de milliers
-    const prixFormate = prixEnFCFA.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Séparateur de milliers avec espace
+    // Arrondir au nombre entier supérieur
+    const prixArrondi = Math.ceil(prixEnFCFA);
 
-    return prixFormate; // Renvoie le prix en FCFA formaté
+    // Formater le prix en ajoutant un séparateur de milliers (sans virgule)
+    const prixFormate = prixArrondi.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // Séparateur de milliers avec espace
+
+    return prixFormate;
 }
