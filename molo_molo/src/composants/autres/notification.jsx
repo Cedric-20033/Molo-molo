@@ -9,7 +9,7 @@ export function Notification({ text, delai, showNotification, setShowNotificatio
                 <strong className="me-auto text-danger font-weight-bold">Molo Molo</strong>
                 <small className="font-italic font-weight-bold">maintenant</small>
             </Toast.Header>
-            <Toast.Body className="text-success">{text}</Toast.Body>
+            <Toast.Body className="text-success">{text} <a href="/cart">voir le panier</a> </Toast.Body>
         </Toast>
     </>
 }

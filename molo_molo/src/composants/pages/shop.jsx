@@ -181,7 +181,7 @@ export function Shop() {
 
                     </div>
                     {showNotification && (<motion.div
-                        className="arrow-notification d-block"
+                        className="arrow-notification d-block"     
                         initial={{ opacity: 0, x: -20 }} // État initial (invisible, légèrement en haut)
                         animate={{ opacity: 1, x: 0 }} // État final (visible, position normale)
                         exit={{ opacity: 1, x: -20 }} // Animation de sortie (disparaît vers le bas)
